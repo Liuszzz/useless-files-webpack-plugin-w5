@@ -10,7 +10,8 @@ class CleanUnusedFilesPlugin {
   }
   apply (compiler) {
     let _this = this
-    compiler.plugin('after-emit', function (compilation, done) {
+    // compiler.plugin
+    compiler.hooks.emit.tapAsync('after-emit', function (compilation, done) {
       _this.findUnusedFiles(compilation, _this.opts)
       done()
     })
